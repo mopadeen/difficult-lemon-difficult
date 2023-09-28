@@ -21,6 +21,15 @@ var uppercaseChars = ['A' , 'B' , 'C' , 'D' , 'E' , 'F' , 'G' , 'H' , 'I' , 'J' 
 var numberChars = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9'];
 var specialChars = ['!' '@' '#' '$' '%' '^' '&' '*' '(' ''' ')' '_' '+' '{' '}' '[' ']' '|' ':' ';' '"' '<' '>' ',' '.' '?' '/' '''];
 
-function getPasswordOptions() {
-  
+
+
+function generatePassword() {
+  const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+  const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVXYZ';
+  const numberChars = '0123456789';
+  const specialChars = '!@#$%^&*()_+{}|":?></.,';
+
+  let length = parseInt(alert("Enter the length of the password between 8 and 128 characters:"));
+
+
 }
