@@ -1,35 +1,62 @@
-// // Assignment code here
+// Assignment code here
 
-
-// // Get references to the #generate element
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+var characterLength = 8;
+var choiceArr = [];
 
 var lowercaseChars = ['a' , 'b' ,'c' , 'd' , 'e' , 'f' , 'g' , 'h' , 'i' , 'j' , 'k' , 'l' , 'm' , 'n' , 'o' , 'p' , 'q' , 'r' , 's' , 't' , 'u' , 'v' , 'w' , 'x' , 'y' , 'z'];
 var uppercaseChars = ['A' , 'B' , 'C' , 'D' , 'E' , 'F' , 'G' , 'H' , 'I' , 'J' , 'K' , 'L' , 'M' , 'N' , 'O' , 'P' , 'Q' , 'R' , 'S' , 'T' , 'U' , 'V' , 'W' , 'X' , 'Y' , 'Z'];
 var numberChars = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9'];
-var specialChars = ['!' '@' '#' '$' '%' '^' '&' '*' '(' ''' ')' '_' '+' '{' '}' '[' ']' '|' ':' ';' '"' '<' '>' ',' '.' '?' '/' '''];
+var specialChars = ['!' , '@' , '#' , '$' , '%' , '^' , '&' , '*' , '(' , ')' , '+' , '{' , '}' , '[' , ']' , '|' , ':' , ';' , '"' , '<' , '>' , ',' , '.' , '?' , '/'];
 
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+// Write password to the #password input
+function writePassword() {
+  var correctPrompts = getPrompts();
+  var passwordText = document.querySelector("#password");
+
+  if (correctPrompts) {
+  var newpassword = generatePassword();
+  passwordText.value = newpassword;
+  } else {
+    passwordText.value = "";
+  }
+}
 
 function generatePassword() {
-  const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-  const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVXYZ';
-  const numberChars = '0123456789';
-  const specialChars = '!@#$%^&*()_+{}|":?></.,';
+  var password = "";
+  for(var i = 0; i < characterLength; i++) {
+    var randomIndex = Math.floor(Math.random() * choiceArr.length);
+    password = password + choiceArr[randomIndex];
+  }
+  return password;
+}
 
-  let length = parseInt(alert("Enter the length of the password between 8 and 128 characters:"));
 
 
+function getPrompts() {
+  choiceArr = [];
+  characterLength = parseInt(prompt("How many characters would you like your password to be? (8 - 128 characters"));
+
+  if(isNan(characterLength) || characterLength < 8 || characterLength > 128) {
+    alert("Character length has to be between 8 and 128 characters. Please try again");
+    return false;
+  }
+  if (confirm("Would you like to include lowercase letters?")) {
+    choiceArr = choiceArr.concat(lowerCaseArr);
+  }
+  if (confirm("Would you like to include uppercase letters?")) {
+    choiceArr = choiceArr.concat(upperCaseArr);
+  }
+  if (confirm("Would you like to include numbers?")) {
+    choiceArr = choiceArr.concat(numberArr);
+  }
+  if (confirm("Would you like to include special characters?")) {
+    choiceArr = choiceArr.concat(specialCharArr);
+  }
+  return true;
 }
