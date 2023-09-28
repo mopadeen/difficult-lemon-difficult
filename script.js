@@ -30,33 +30,36 @@ function writePassword() {
 function generatePassword() {
   var password = "";
   for(var i = 0; i < characterLength; i++) {
-    var randomIndex = Math.floor(Math.random() * choiceArr.length);
-    password = password + choiceArr[randomIndex];
+    var randomLetter = Math.floor(Math.random() * choiceArr.length);
+    password = password + choiceArr[randomLetter];
   }
   return password;
 }
 
 
 
-function getPrompts() {
+function getPrompts(){
   choiceArr = [];
   characterLength = parseInt(prompt("How many characters would you like your password to be? (8 - 128 characters"));
 
-  if(isNan(characterLength) || characterLength < 8 || characterLength > 128) {
+  if (isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
     alert("Character length has to be between 8 and 128 characters. Please try again");
     return false;
   }
   if (confirm("Would you like to include lowercase letters?")) {
-    choiceArr = choiceArr.concat(lowerCaseArr);
+    choiceArr = choiceArr.concat(lowercaseChars);
   }
   if (confirm("Would you like to include uppercase letters?")) {
-    choiceArr = choiceArr.concat(upperCaseArr);
+    choiceArr = choiceArr.concat(uppercaseChars);
   }
   if (confirm("Would you like to include numbers?")) {
-    choiceArr = choiceArr.concat(numberArr);
+    choiceArr = choiceArr.concat(numberChars);
   }
   if (confirm("Would you like to include special characters?")) {
-    choiceArr = choiceArr.concat(specialCharArr);
+    choiceArr = choiceArr.concat(specialChars);
   }
   return true;
 }
+
+getPrompts();
+writePassword();
