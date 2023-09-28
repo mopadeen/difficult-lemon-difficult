@@ -1,2 +1,2 @@
 # difficult-lemon-difficult
-who said coding was hard?
+this password generator took years off my life.
